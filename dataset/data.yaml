@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 6
+names: ['black_spot', 'downy_mildew', 'healthy_leaf', 'powdery_mildew', 'red_mite', 'thrip']
+
+roboflow:
+  workspace: tigers-domain
+  project: rose-diseases-detection-rryri
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/tigers-domain/rose-diseases-detection-rryri/dataset/3
