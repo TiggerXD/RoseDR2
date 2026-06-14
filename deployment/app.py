@@ -255,16 +255,3 @@ if uploaded_file is not None:
                 result.plot(),
                 use_container_width=True
             )
-
-st.markdown("---")
-
-st.markdown(
-    """
-    <div style="text-align:center;color:#d9e8d9;">
-        RoseDR • Rose Disease Recognition System
-        <br>
-        Powered by YOLOv26
-    </div>
-    """,
-    unsafe_allow_html=True
-)
