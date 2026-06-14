@@ -19,7 +19,7 @@ MODEL_PATH = os.path.join(
     os.path.dirname(__file__),
     "..",
     "RoseDR_model",
-    "best.pt"
+    "RoseDR.pt"
 )
 
 @st.cache_resource
@@ -28,9 +28,8 @@ def load_model():
 
 model = load_model()
 
-# ----------------------------
-# Image Upload
-# ----------------------------
+
+#upload image
 uploaded_file = st.file_uploader(
     "Choose a leaf image",
     type=["jpg", "jpeg", "png"]
