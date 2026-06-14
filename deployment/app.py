@@ -6,7 +6,6 @@ import os
 
 st.set_page_config(
     page_title="RoseDR",
-    page_icon="🌹",
     layout="wide"
 )
 
@@ -15,61 +14,74 @@ st.markdown("""
 
 .stApp {
     background: linear-gradient(
-        to bottom,
-        #f8fff8,
-        #edf7ed
+        180deg,
+        #1f3b2d 0%,
+        #2b4a39 50%,
+        #365c47 100%
     );
+}
+
+.block-container {
+    max-width: 1050px;
+    padding-top: 1rem;
 }
 
 .main-title {
     text-align: center;
-    color: #2E7D32;
-    font-size: 3.5rem;
-    font-weight: bold;
+    color: #f5fff5;
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: 3px;
     margin-bottom: 0;
 }
 
 .subtitle {
     text-align: center;
-    color: #5E7D60;
-    font-size: 1.2rem;
+    color: #d9e8d9;
+    font-size: 1.4rem;
     margin-bottom: 2rem;
 }
 
 .hero-box {
-    background-color: white;
+    background: rgba(255,255,255,0.95);
+    color: #1f1f1f;
+    border-radius: 18px;
     padding: 25px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
+    max-width: 850px;
+    margin: auto;
     margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
 }
 
 .result-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
+    background: rgba(255,255,255,0.97);
+    color: #1f1f1f;
     border-left: 8px solid #43A047;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 650px;
+    margin: auto;
     margin-top: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
 }
 
 [data-testid="stFileUploader"] {
-    border: 3px dashed #66BB6A;
+    background: rgba(255,255,255,0.95);
+    border: 2px solid #6abf69;
     border-radius: 15px;
     padding: 15px;
-    background-color: rgba(255,255,255,0.8);
 }
 
 .stButton > button {
+    width: 100%;
+    height: 3.2rem;
+    border-radius: 12px;
+    border: none;
     background-color: #43A047;
     color: white;
-    border-radius: 10px;
-    height: 3em;
-    width: 100%;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .stButton > button:hover {
@@ -77,7 +89,57 @@ st.markdown("""
     color: white;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+[data-testid="stImage"] {
+    border-radius: 12px;
+}
+
+.left-vine {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 100vh;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            rgba(120,180,120,0.25) 0px,
+            rgba(120,180,120,0.25) 12px,
+            transparent 12px,
+            transparent 30px
+        );
+    z-index: -1;
+}
+
+.right-vine {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 70px;
+    height: 100vh;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            rgba(120,180,120,0.25) 0px,
+            rgba(120,180,120,0.25) 12px,
+            transparent 12px,
+            transparent 30px
+        );
+    z-index: -1;
+}
+
+footer {
+    visibility: hidden;
+}
+
 </style>
+
+<div class="left-vine"></div>
+<div class="right-vine"></div>
+
 """, unsafe_allow_html=True)
 
 st.markdown(
@@ -92,9 +154,9 @@ st.markdown(
 
 st.markdown("""
 <div class="hero-box">
-<h2>Welcome to RoseDR</h2>
+<h2 style="color:#1f1f1f;">Welcome to RoseDR</h2>
 <p>
-Upload a rose leaf image and allow the AI model to identify
+Upload an image of a rose leaf and allow the model to analyze
 potential diseases affecting the plant.
 </p>
 </div>
@@ -116,7 +178,7 @@ def load_model():
 try:
     model = load_model()
 except Exception as e:
-    st.error("Failed to load model.")
+    st.error("Failed to load model")
     st.code(str(e))
     st.stop()
 
@@ -129,7 +191,7 @@ if uploaded_file is not None:
 
     image = Image.open(uploaded_file)
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 1])
 
     with col1:
         st.subheader("Uploaded Image")
@@ -139,7 +201,6 @@ if uploaded_file is not None:
         )
 
     with col2:
-
         st.subheader("Disease Analysis")
 
         if st.button("Analyze Image"):
@@ -176,9 +237,9 @@ if uploaded_file is not None:
                 st.markdown(
                     f"""
                     <div class="result-card">
-                        <h3>Disease Detected</h3>
-                        <h2>{disease_name}</h2>
-                        <h4>Confidence: {confidence:.2%}</h4>
+                        <h3 style="color:#1f1f1f;">Disease Detected</h3>
+                        <h2 style="color:#2E7D32;">{disease_name}</h2>
+                        <h4 style="color:#444444;">Confidence: {confidence:.2%}</h4>
                     </div>
                     """,
                     unsafe_allow_html=True
@@ -188,10 +249,8 @@ if uploaded_file is not None:
 
             st.subheader("Detection Result")
 
-            annotated_image = result.plot()
-
             st.image(
-                annotated_image,
+                result.plot(),
                 use_container_width=True
             )
 
@@ -199,10 +258,10 @@ st.markdown("---")
 
 st.markdown(
     """
-    <div style='text-align:center;color:#777777'>
-    RoseDR - Rose Disease Recognition System
-    <br>
-    Powered by YOLOv26
+    <div style="text-align:center;color:#d9e8d9;">
+        RoseDR • Rose Disease Recognition System
+        <br>
+        Powered by YOLOv26
     </div>
     """,
     unsafe_allow_html=True
