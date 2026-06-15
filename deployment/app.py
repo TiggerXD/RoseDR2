@@ -149,11 +149,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    "<p class='subtitle'>AI-Powered Rose Disease Detection System</p>",
-    unsafe_allow_html=True
-)
-
 st.markdown("""
 <div class="hero-box">
 <h2 style="color:#1f1f1f;">Welcome to RoseDR</h2>
