@@ -211,11 +211,11 @@ if uploaded_file is not None:
 
                     image.save(tmp.name)
 
-                    results = model(tmp.name)
+                    results = model(tmp.name, conf=0.75)
 
             result = results[0]
 
-            if len(result.boxes) == 0 or result.boxes[0].conf < 0.75:
+            if len(result.boxes) == 0:
                 st.warning("No disease detected.")
 
             else:
