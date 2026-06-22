@@ -4,7 +4,7 @@ def main():
     model = YOLO("yolo26l.pt")
 
     model.train(
-        data="dataset/data.yaml",
+        data="../dataset/data.yaml",
         epochs=100,
         imgsz=512,
         batch=16,
