@@ -167,14 +167,6 @@ MODEL_PATH = os.path.abspath(
         "RoseDR.pt"
     )
 )
-MODEL_PATH = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__),
-        "..",
-        "RoseDR_model",
-        "RoseDR.pt"
-    )
-)
 
 CLASSIFIER_PATH = os.path.abspath(
     os.path.join(
