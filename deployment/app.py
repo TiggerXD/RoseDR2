@@ -249,6 +249,7 @@ def is_rose_leaf(image):
 
 uploaded_file = st.file_uploader(
     "Upload a Rose Leaf Image",
+    "Upload a Rose Leaf Image",
     type=["jpg", "jpeg", "png"]
 )
 
@@ -294,12 +295,18 @@ if uploaded_file is not None:
             )
 
             with st.spinner("Analyzing image..."):
+            with st.spinner("Analyzing image..."):
 
                 with tempfile.NamedTemporaryFile(
                     delete=False,
                     suffix=".jpg"
                 ) as tmp:
+                with tempfile.NamedTemporaryFile(
+                    delete=False,
+                    suffix=".jpg"
+                ) as tmp:
 
+                    image.save(tmp.name)
                     image.save(tmp.name)
 
                     results = model(
@@ -313,6 +320,7 @@ if uploaded_file is not None:
 
                 st.warning("No disease detected.")
 
+            else:
             else:
 
                 healthy_classes = [
@@ -380,6 +388,7 @@ if uploaded_file is not None:
             )
 
             st.image(
+                result.plot(),
                 result.plot(),
                 use_container_width=True
             )
